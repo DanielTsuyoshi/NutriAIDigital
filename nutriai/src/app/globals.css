@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #f4efef;
+}
+
+.hover-link:hover {
+  color: rgb(99, 5, 99); 
+}
+
+
