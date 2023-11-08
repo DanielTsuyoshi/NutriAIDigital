@@ -1,60 +1,54 @@
-import NavBar from "@/components/NavBar";
+import SideBar from "@/components/SideBar";
 import DataRow from "./DataRow";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { cookies } from "next/headers";
 
-async function getProdutos() {
-    try {
-        const response = await fetch("http://localhost:8080/nutriai/api/produto", {
-            headers: {
-                Authorization: 'Bearer AIzaSyADQ3Xh8SpuYDKPSvmYoYZsEYLb4eV4EZk', 
-            },
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data.content;
-        } else {
-            console.error("Erro ao buscar produtos");
-            return [];
-        }
-    } catch (error) {
-        console.error("Erro ao buscar produtos", error);
-        return [];
-    }
+async function getProducts() {
+    const url = "http://localhost:8080/nutriai/api/produto"
+    const token = cookies().get("nutriai_token");
+    const response = await fetch(url, { headers: { Authorization: `Bearer ${token.value}` } });
+    return response.json();
 }
 
-export default function ListaProdutos() {
-    const [produtos, setProdutos] = useState([]);
+export default function ProductList() {
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchProdutos() {
-            const produtosData = await getProdutos();
-            setProdutos(produtosData);
-        }
-
-        fetchProdutos();
+        getProducts().then((result) => {
+            setData(result.content);
+            setIsLoading(false);
+        });
     }, []);
 
     return (
-        <div>
-            <NavBar active={"lista_produtos"} />
-            <main className="container mx-auto p-4">
+        <div className="flex">
+            <div className="w-64 mr-4">
+                <SideBar active={"product_list"} />
+            </div>
+            <main>
+                <h2 className="text-2xl font-bold">Lista de Produtos</h2>
                 <div className="mb-4">
-                    <table className="min-w-full">
-                        <thead>
-                            <tr className="border-b border-gray-200">
-                                <th className="px-3 py-2">ID</th>
-                                <th className="px-3 py-2">Nome</th>
-                                <th className="px-3 py-2">Valor</th>
-                                <th className="px-3 py-2">Descrição</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {produtos.map((produto) => (
-                                <DataRow key={produto.id} produto={produto} />
-                            ))}
-                        </tbody>
-                    </table>
+                    {isLoading ? (
+                        <p>Carregando produtos...</p>
+                    ) : (
+                        <table className="min-w-full">
+                            <thead>
+                                <tr className="border-b border-gray-200">
+                                    <th className="px-2">ID</th>
+                                    <th className="px-2">Nome</th>
+                                    <th className="px-2">Tipo</th>
+                                    <th className="px-2">Valor</th>
+                                    <th className="px-2">Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((produto) => (
+                                    <DataRow key={produto.id} produto={produto} />
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </main>
         </div>

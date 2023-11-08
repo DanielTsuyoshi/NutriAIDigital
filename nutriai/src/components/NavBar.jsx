@@ -20,51 +20,44 @@ export default function NavBar() { // Renomeie a função para NavBar
                         </Link>
                     </li>
                     <li>
-                        <Link href="/cadastrar_usuario">
+                        <Link href="/usuario">
                             <a className="text-white hover:text-gray-300" title="Cadastrar Usuário">
                                 <UserAddIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/cadastrar_produtos">
-                            <a className="text-white hover:text-gray-300" title="Cadastrar Alimentos">
+                        <Link href="/produto">
+                            <a className="text-white hover:text-gray-300" title="Cadastrar Produtos">
                                 <FoodIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/buscar_usuario">
+                        <Link href="/busca_usuario">
                             <a className="text-white hover:text-gray-300" title="Buscar Usuário">
                                 <SearchIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/listar_produtos">
-                            <a className="text-white hover:text-gray-300" title="Listar Alimentos">
+                        <Link href="/lista_produtos">
+                            <a className="text-white hover:text-gray-300" title="Listar Produtos">
                                 <ClipboardCheckIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/gerar_recomendacao">
+                        <Link href="/recomendacao">
                             <a className="text-white hover:text-gray-300" title="Gerar Recomendação">
                                 <DocumentTextIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/ver_recomendacoes">
-                            <a className="text-white hover:text-gray-300" title="Ver Recomendações">
+                        <Link href="/lista_recomendacao">
+                            <a className="text-white hover:text-gray-300" title="Listar Recomendações">
                                 <DocumentSearchIcon className="h-6 w-6" />
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/recomendacoes_por_usuario">
-                            <a className="text-white hover:text-gray-300" title="Recomendações por Usuário">
-                                <LightBulbIcon className="h-6 w-6" />
                             </a>
                         </Link>
                     </li>
