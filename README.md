@@ -61,3 +61,7 @@ Coleta contínua de feedback dos usuários para ajustes ágeis.
 
 Hospedagem estratégica na Azure, garantindo a facilidade de escalabilidade para atender a um número crescente de usuários.
 Foco na alta disponibilidade do sistema.
+
+### Link Youtube
+
+https://www.youtube.com/watch?v=vvzuHKblVxQ
